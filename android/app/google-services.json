@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "261281460648",
+    "project_id": "platinum-goods-469913-s2",
+    "storage_bucket": "platinum-goods-469913-s2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261281460648:android:f989fd43169751f24cad9d",
+        "android_client_info": {
+          "package_name": "com.example.flux_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOVh5K5qWYgCnwNYp4Fa2knqO78eD0nQI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
