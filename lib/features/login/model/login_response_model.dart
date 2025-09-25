@@ -25,13 +25,13 @@ class LoginResponseModel {
     };
   }
 
-  factory LoginResponseModel.fromMap(Map<String, dynamic> map) {
+  factory LoginResponseModel.fromjson(Map<String, dynamic> json) {
     return LoginResponseModel(
-      uid: map['uid'],
-      name: map['name'],
-      email: map['email'],
-      role: map['role'] ?? 'user',
-      createdAt: map['createdAt'],
+      uid: json['uid'],
+      name: json['name'],
+      email: json['email'],
+      role: json['role'] ?? 'user',
+      createdAt: json['createdAt'],
     );
   }
 }

@@ -57,7 +57,7 @@ class SplashController extends GetxController {
     try {
       DocumentSnapshot doc = await firestore.collection("users").doc(uid).get();
       if (doc.exists) {
-        userData.value = LoginResponseModel.fromMap(
+        userData.value = LoginResponseModel.fromjson(
           doc.data() as Map<String, dynamic>,
         );
       } else {
