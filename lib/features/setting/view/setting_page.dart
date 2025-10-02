@@ -43,17 +43,31 @@ class _SettingsPageState extends State<SettingsPage> {
                       label: "Email",
                     ),
                     const SizedBox(height: 30),
-                    ElevatedButton(
-                      onPressed: () {
-                        controller.updateProfile();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(double.infinity, 50),
-                        backgroundColor: Colors.black,
-                      ),
-                      child: const Text(
-                        "Edit Profile",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          controller.updateProfile();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              Theme.of(context).brightness == Brightness.dark
+                              ? Colors
+                                    .white // Dark Mode => أبيض
+                              : Colors.black, // Light Mode => أسود
+                        ),
+
+                        child: Text(
+                          'Edit Profile',
+                          style: TextStyle(
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                ? Colors
+                                      .black // النص أسود إذا الخلفية بيضاء
+                                : Colors.white, // النص أبيض إذا الخلفية سوداء
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -61,7 +75,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
 
-            // ✅ شاشة اللودينغ تغطي الصفحة كاملة
+            //  شاشة اللودينغ تغطي الصفحة كاملة
             if (controller.isLoading.value)
               Container(
                 color: Colors.black54, // خلفية شبه شفافة

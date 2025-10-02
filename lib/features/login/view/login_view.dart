@@ -80,7 +80,7 @@ class _LoginViewState extends State<LoginView> {
                   Center(
                     child: CustomButton(
                       text: 'Log In',
-                      color: Colors.black,
+                      color: Theme.of(context).appBarTheme.foregroundColor,
                       height: 60,
                       width: 167,
                       borderRadius: 50,
@@ -132,10 +132,12 @@ class _LoginViewState extends State<LoginView> {
                         onTap: () {
                           Get.off(() => SignupView());
                         },
-                        child: const Text(
+                        child: Text(
                           'Sign Up',
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Theme.of(
+                              context,
+                            ).appBarTheme.foregroundColor,
                             decoration: TextDecoration.underline,
                           ),
                         ),

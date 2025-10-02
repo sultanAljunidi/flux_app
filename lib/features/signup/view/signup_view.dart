@@ -138,10 +138,12 @@ class SignupView extends StatelessWidget {
                         onTap: () {
                           Get.offAll(() => LoginView());
                         },
-                        child: const Text(
+                        child: Text(
                           'Log in',
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Theme.of(
+                              context,
+                            ).appBarTheme.foregroundColor,
                             decoration: TextDecoration.underline,
                           ),
                         ),

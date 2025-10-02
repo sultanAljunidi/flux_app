@@ -49,32 +49,55 @@ class MyProfilePage extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Colors.grey[100],
+                    color: Colors.grey.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
                         "Account Information",
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
+                          color: Theme.of(context).appBarTheme.foregroundColor,
                         ),
                       ),
                       SizedBox(height: 10),
-                      Text("Your account info is shown here."),
+                      Text(
+                        "Your account info is shown here.",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).appBarTheme.foregroundColor,
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 50),
                 SizedBox(
                   width: double.infinity,
-                  child: CustomButton(
-                    onTap: () {
+                  height: 50,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          Theme.of(context).brightness == Brightness.dark
+                          ? Colors
+                                .white // Dark Mode => أبيض
+                          : Colors.black, // Light Mode => أسود
+                    ),
+                    onPressed: () {
                       Get.to(() => SettingsPage());
                     },
-                    text: 'Edit Profile',
+                    child: Text(
+                      'Edit Profile',
+                      style: TextStyle(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors
+                                  .black // النص أسود إذا الخلفية بيضاء
+                            : Colors.white, // النص أبيض إذا الخلفية سوداء
+                      ),
+                    ),
                   ),
                 ),
               ],

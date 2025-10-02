@@ -20,67 +20,60 @@ class HomeDrawerWidget extends StatelessWidget {
     return Drawer(
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          topRight: Radius.circular(20),
-          bottomRight: Radius.circular(20),
+          topRight: Radius.circular(32),
+          bottomRight: Radius.circular(32),
         ),
       ),
       child: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+          padding: const EdgeInsets.all(16),
           children: [
             // User info section
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  Container(
-                    width: 100,
-                    height: 75,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: NetworkImage(profileImage),
-                        fit: BoxFit.cover,
-                      ),
+            Row(
+              children: [
+                Container(
+                  width: 100,
+                  height: 75,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: NetworkImage(profileImage),
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  const SizedBox(width: 12),
+                ),
+                const SizedBox(width: 10),
 
-                  GetBuilder<LoginController>(
-                    builder: (loginController) {
-                      final name = loginController.userData?.name ?? "No Name";
-                      final email =
-                          loginController.userData?.email ?? "No Email";
-                      return Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              name,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
+                GetBuilder<LoginController>(
+                  builder: (loginController) {
+                    final name = loginController.userData?.name ?? "No Name";
+                    final email = loginController.userData?.email ?? "No Email";
+                    return Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            name,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
                             ),
-                            Text(
-                              email,
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 13,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
+                          ),
+                          Text(
+                            email,
+                            style: TextStyle(color: Colors.grey, fontSize: 13),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
 
             // Main menu
             _drawerItem(Icons.home, 'Homepage', false, () {
@@ -96,7 +89,7 @@ class HomeDrawerWidget extends StatelessWidget {
               Get.to(() => MyProfilePage());
             }),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Text(
@@ -108,7 +101,7 @@ class HomeDrawerWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 10),
+            // const SizedBox(height: 10),
             _drawerItem(Icons.settings_outlined, 'Setting', false, () {
               Get.to(() => SettingsPage());
             }),
@@ -118,10 +111,9 @@ class HomeDrawerWidget extends StatelessWidget {
               Get.put(LoginController()).logout();
             }),
 
-            const Spacer(),
-            // Theme toggle
+            SizedBox(height: 50),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -183,7 +175,7 @@ class HomeDrawerWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     Icon(icon, color: theme.iconTheme.color),
-                    const SizedBox(width: 16),
+                    // const SizedBox(width: 16),
                     Text(
                       title,
                       style: TextStyle(

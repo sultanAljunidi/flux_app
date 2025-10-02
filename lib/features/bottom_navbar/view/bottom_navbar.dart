@@ -38,23 +38,35 @@ class _CustomNavBarViewState extends State<CustomNavBarView> {
             shadowColor: isDark ? Colors.black.withOpacity(0.6) : Colors.grey,
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
+                borderRadius: BorderRadius.circular(32),
                 color: Colors.white,
               ),
-              padding: const EdgeInsets.symmetric(vertical: 16),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: List.generate(5, (index) {
                   final isSelected = index == navController.currentIndex.value;
 
                   Widget iconData = [
-                    const Icon(Icons.home_outlined, size: 30),
-                    const Icon(Icons.search_outlined, size: 30),
+                    const Icon(
+                      Icons.home_outlined,
+                      size: 25,
+                      color: Colors.black,
+                    ),
+                    const Icon(
+                      Icons.search_outlined,
+                      size: 25,
+                      color: Colors.black,
+                    ),
                     Obx(() {
                       return Stack(
                         clipBehavior: Clip.none,
                         children: [
-                          const Icon(Icons.shopping_bag_outlined, size: 30),
+                          const Icon(
+                            Icons.shopping_bag_outlined,
+                            size: 25,
+                            color: Colors.black,
+                          ),
                           if (cartController.totalUniqueItems > 0)
                             Positioned(
                               right: -6,
@@ -82,13 +94,21 @@ class _CustomNavBarViewState extends State<CustomNavBarView> {
                         ],
                       );
                     }),
-                    const Icon(Icons.person_outline, size: 30),
+                    const Icon(
+                      Icons.person_outline,
+                      size: 25,
+                      color: Colors.black,
+                    ),
                     Obx(() {
                       final favCount = favController.favoriteItems.length;
                       return Stack(
                         clipBehavior: Clip.none,
                         children: [
-                          const Icon(Icons.favorite_border_outlined, size: 30),
+                          const Icon(
+                            Icons.favorite_border_outlined,
+                            size: 25,
+                            color: Colors.black,
+                          ),
                           if (favCount > 0)
                             Positioned(
                               right: -6,

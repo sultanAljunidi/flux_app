@@ -5,7 +5,17 @@ import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  if (Firebase.apps.isEmpty) {
+    await Firebase.initializeApp(
+      // options: const FirebaseOptions(
+      //   apiKey: 'AIzaSyCOVh5K5qWYgCnwNYp4Fa2knqO78eD0nQI',
+      //   appId: '1:261281460648:android:f989fd43169751f24cad9d',
+      //   messagingSenderId: '261281460648',
+      //   projectId: 'platinum-goods-469913-s2',
+      //   storageBucket: 'platinum-goods-469913-s2.firebasestorage.app',
+      // ),
+    );
+  }
 
   runApp(const MyApp());
 }

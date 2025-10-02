@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flux_app/core/theme/app_images.dart';
 import 'package:flux_app/features/cart/controller/cart_controller.dart';
@@ -24,70 +25,79 @@ class _HomeViewState extends State<HomeView> {
   bool _isRefreshing = false;
   var cartController = Get.put(CartController());
 
-  Widget buildHomeShimmer() {
+  Widget buildHomeShimmer(double screenWidth, double screenHeight) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 20),
+          SizedBox(height: screenHeight * 0.02),
           SizedBox(
-            height: 100,
+            height: screenHeight * 0.12,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
               itemCount: 5,
               itemBuilder: (context, index) {
                 return Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
                   child: Container(
-                    width: 100,
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                    width: screenWidth * 0.22,
+                    margin: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.02,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(50),
+                      borderRadius: BorderRadius.circular(screenWidth * 0.1),
                     ),
                   ),
                 );
               },
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: screenHeight * 0.02),
 
           Shimmer.fromColors(
             baseColor: Colors.grey[300]!,
             highlightColor: Colors.grey[100]!,
             child: Container(
-              height: 175,
-              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              height: screenHeight * 0.22,
+              margin: EdgeInsets.symmetric(
+                horizontal: screenWidth * 0.04,
+                vertical: screenHeight * 0.01,
+              ),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(screenWidth * 0.03),
               ),
             ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: screenHeight * 0.02),
 
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
             child: Shimmer.fromColors(
               baseColor: Colors.grey[300]!,
               highlightColor: Colors.grey[100]!,
-              child: Container(height: 20, width: 150, color: Colors.white),
+              child: Container(
+                height: screenHeight * 0.025,
+                width: screenWidth * 0.4,
+                color: Colors.white,
+              ),
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: screenHeight * 0.02),
 
           SizedBox(
-            height: 250,
+            height: screenHeight * 0.28,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
               itemCount: 5,
               itemBuilder: (context, index) {
                 return Container(
-                  width: 160,
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  width: screenWidth * 0.42,
+                  margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.02),
                   child: Shimmer.fromColors(
                     baseColor: Colors.grey[300]!,
                     highlightColor: Colors.grey[100]!,
@@ -98,14 +108,24 @@ class _HomeViewState extends State<HomeView> {
                           child: Container(
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.circular(
+                                screenWidth * 0.03,
+                              ),
                             ),
                           ),
                         ),
-                        const SizedBox(height: 8),
-                        Container(height: 14, width: 120, color: Colors.white),
-                        const SizedBox(height: 6),
-                        Container(height: 12, width: 60, color: Colors.white),
+                        SizedBox(height: screenHeight * 0.01),
+                        Container(
+                          height: screenHeight * 0.018,
+                          width: screenWidth * 0.3,
+                          color: Colors.white,
+                        ),
+                        SizedBox(height: screenHeight * 0.008),
+                        Container(
+                          height: screenHeight * 0.015,
+                          width: screenWidth * 0.15,
+                          color: Colors.white,
+                        ),
                       ],
                     ),
                   ),
@@ -113,7 +133,7 @@ class _HomeViewState extends State<HomeView> {
               },
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: screenHeight * 0.02),
 
           Column(
             children: List.generate(3, (index) {
@@ -121,14 +141,14 @@ class _HomeViewState extends State<HomeView> {
                 baseColor: Colors.grey[300]!,
                 highlightColor: Colors.grey[100]!,
                 child: Container(
-                  height: 120,
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
+                  height: screenHeight * 0.14,
+                  margin: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.04,
+                    vertical: screenHeight * 0.01,
                   ),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(screenWidth * 0.03),
                   ),
                 ),
               );
@@ -141,6 +161,10 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    // MediaQuery
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
@@ -150,6 +174,7 @@ class _HomeViewState extends State<HomeView> {
           style: TextStyle(
             color: Theme.of(context).appBarTheme.foregroundColor,
             fontWeight: FontWeight.bold,
+            fontSize: 20,
           ),
         ),
         actions: [
@@ -159,22 +184,24 @@ class _HomeViewState extends State<HomeView> {
                 icon: Icon(
                   Icons.notifications_none,
                   color: Theme.of(context).appBarTheme.foregroundColor,
+                  size: 20,
                 ),
                 onPressed: () {},
               ),
               Positioned(
-                right: 9,
+                right: 10,
                 top: 5,
                 child: Container(
+                  padding: EdgeInsets.all(2),
                   decoration: const BoxDecoration(
                     color: Colors.red,
                     shape: BoxShape.circle,
                   ),
                   child: Text(
-                    '3',
+                    '1',
                     style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 12,
+                      color: Colors.white,
+                      fontSize: 8,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -186,7 +213,7 @@ class _HomeViewState extends State<HomeView> {
       ),
       drawer: HomeDrawerWidget(),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(screenWidth * 0.02),
         child: RefreshIndicator(
           backgroundColor: Theme.of(context).appBarTheme.foregroundColor,
           onRefresh: () async {
@@ -205,24 +232,25 @@ class _HomeViewState extends State<HomeView> {
             }
           },
           child: _isRefreshing
-              ? buildHomeShimmer()
+              ? buildHomeShimmer(screenWidth, screenHeight)
               : SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _HomeCategory(),
                       _ProductShow(),
-
-                      const SizedBox(height: 20),
+                      SizedBox(height: screenHeight * 0.02),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: screenWidth * 0.04,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
+                            Text(
                               "Feature Products",
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: screenWidth * 0.045,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -236,15 +264,16 @@ class _HomeViewState extends State<HomeView> {
                                   color: Theme.of(
                                     context,
                                   ).appBarTheme.foregroundColor,
+                                  fontSize: screenWidth * 0.04,
                                 ),
                               ),
                             ),
                           ],
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      // Featured Section
+                      SizedBox(height: screenHeight * 0.02),
                       AllProductsHorizontalView(),
+
                       Card(
                         color: Theme.of(context).scaffoldBackgroundColor,
                         child: Row(
